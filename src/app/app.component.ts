@@ -16,6 +16,7 @@ interface cuota {
 export class AppComponent implements OnInit {
   capital: number = 0;
   plazo: number = 0;
+  
   tazaInteres: number = 0;
   interesMensual: number = 0;
   cuotaMensual: number = 0;
@@ -27,11 +28,11 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.calcular();
+    // this.calcular();
   }
 
   calcular() {
-    this.capital = 2665000;
+    // this.capital = 2665000;
     this.plazo = 10;
     this.tazaInteres = 12;
 
