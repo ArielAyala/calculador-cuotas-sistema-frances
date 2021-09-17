@@ -1,38 +1,82 @@
-<style>
+<style></style>
 
-</style>
-
-
-<div class="content" role="main"> 
+<div class="content" role="main">
   <h1>Calcular cuotas - sistema fracés</h1>
-  
-  <input type="number" ngModel="capital">
-  <input type="number" ngModel="plazo">
-  <button mat-raised-button (click)="calcular()">Generar</button>
-  {{cuotas | json}}
-  <table [hidden]="capital == 0 || plazo == 0" style="width: 100%">
-    <tr>
-      <th>Cuota</th>
-      <th>Amortización</th>
-      <th>Interés</th>
-      <th>Saldo</th>
-      <th>Cuota</th>
-    </tr>
-    <tr *ngFor="let cuota of cuotas">
-      <th>{{ cuota.numeroCuota }}</th>
-      <th>{{ cuota.amortizacion }}</th>
-      <th>{{ cuota.interes }}</th>
-      <th>{{ cuota.saldo }}</th>
-      <th>{{ cuota.cuota }}</th>
-    </tr>
-    <hr />
-    <tr>
-      <th></th>
-      <th>{{ totalAmortizacion }}</th>
-      <th>{{ totalInteres }}</th>
-    </tr>
-  </table>
 
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Monto</mat-label>
+      <input name="capital" matInput [(ngModel)]="capital" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Cuota</mat-label>
+      <input name="plazo" matInput maxlength="5" [(ngModel)]="plazo" />
+    </mat-form-field>
+
+    <button mat-raised-button (click)="calcular()">Generar</button>
+  </form>
+  <!-- {{cuotas | json}} -->
+
+  <!--<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+     <ng-container matColumnDef="numero-cuota">
+      <th mat-header-cell *matHeaderCellDef>Número cuota</th>
+      <td mat-cell *matCellDef="let element">{{ element.numeroCuota }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="amortizacion">
+      <th mat-header-cell *matHeaderCellDef>Amortizacion</th>
+      <td mat-cell *matCellDef="let element">{{ element.amortizacion }}</td>
+    </ng-container>
+    <ng-container matColumnDef="interes">
+      <th mat-header-cell *matHeaderCellDef>Interés</th>
+      <td mat-cell *matCellDef="let element">{{ element.interes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="saldo">
+      <th mat-header-cell *matHeaderCellDef>Saldo</th>
+      <td mat-cell *matCellDef="let element">{{ element.saldo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cuota">
+      <th mat-header-cell *matHeaderCellDef>Cuota</th>
+      <td mat-cell *matCellDef="let element">{{ element.cuota }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table> -->
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container matColumnDef="numero-cuota">
+      <th mat-header-cell *matHeaderCellDef> Nro. Cuota</th>
+      <td mat-cell *matCellDef="let element"> {{element.numeroCuota}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="amortizacion">
+      <th mat-header-cell *matHeaderCellDef> Amortizacion </th>
+      <td mat-cell *matCellDef="let element"> {{element.amortizacion}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="interes">
+      <th mat-header-cell *matHeaderCellDef> Interés </th>
+      <td mat-cell *matCellDef="let element"> {{element.interes}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="saldo">
+      <th mat-header-cell *matHeaderCellDef> Saldo </th>
+      <td mat-cell *matCellDef="let element"> {{element.saldo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cuota">
+      <th mat-header-cell *matHeaderCellDef> Cuota </th>
+      <td mat-cell *matCellDef="let element"> {{element.cuota}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>
 
 <router-outlet></router-outlet>
