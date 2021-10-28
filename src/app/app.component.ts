@@ -17,10 +17,10 @@ export interface cuota {
 export class AppComponent implements OnInit {
   dataSource: cuota[] = [];
 
-  capital: number = 2665000;
-  plazo: number = 12;
+  capital: number = 2349410;
+  plazo: number = 6;
 
-  tazaInteres: number = 0;
+  tazaInteres: number = 9;
   interesMensual: number = 0;
   cuotaMensual: number = 0;
   cuotas: cuota[] = [];
@@ -67,6 +67,10 @@ export class AppComponent implements OnInit {
       };
 
       cuota.interes = Math.trunc(cuota.saldo / 100) * this.interesMensual;
+      console.log('interes con decimales',cuota.interes);
+      cuota.interes = parseInt(cuota.interes.toFixed());
+      console.log('interes',cuota.interes);
+      
 
       cuota.amortizacion = this.cuotaMensual - cuota.interes;
       cuota.cuota = this.cuotaMensual;
