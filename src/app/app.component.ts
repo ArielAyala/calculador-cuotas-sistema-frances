@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
       ((this.interesMensual / 100) * this.capital) /
       (1 - Math.pow(1 / (1 + this.interesMensual / 100), this.plazo));
 
-    this.cuotaMensual = Math.trunc(this.cuotaMensual);
+    this.cuotaMensual = Math.round(this.cuotaMensual); // Redondeo
 
     this.saldo = this.capital;
     for (let cuotaIndex = 1; cuotaIndex <= this.plazo; cuotaIndex++) {
@@ -65,15 +65,23 @@ export class AppComponent implements OnInit {
         numeroCuota: cuotaIndex,
         saldo: this.saldo,
       };
+      if (cuotaIndex === 6) {
+        console.log(cuota);
+      }
 
-      cuota.interes = Math.trunc(cuota.saldo / 100) * this.interesMensual;
-      console.log('interes con decimales',cuota.interes);
-      cuota.interes = parseInt(cuota.interes.toFixed());
-      console.log('interes',cuota.interes);
-      
+      // Interes de la cuota
+      cuota.interes = Math.round((cuota.saldo / 100) * this.interesMensual);
 
+      // Amortizacion de la cuota
       cuota.amortizacion = this.cuotaMensual - cuota.interes;
+      
       cuota.cuota = this.cuotaMensual;
+
+      if (cuotaIndex === this.plazo) {
+        cuota.amortizacion = this.saldo;
+      }
+
+      // Saldo de la cuota
       this.saldo = this.saldo - cuota.amortizacion;
 
       this.totalAmortizacion = this.totalAmortizacion + cuota.amortizacion;
