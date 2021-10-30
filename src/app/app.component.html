@@ -6,7 +6,7 @@
   <form class="example-form">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Monto</mat-label>
-      <input name="capital" matInput [(ngModel)]="capital" />
+      <input name="capital" matInput mask="separator.2" thousandSeparator="." [(ngModel)]="capital" />
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
@@ -28,15 +28,16 @@
     mat-table
     [dataSource]="dataSource"
     class="mat-elevation-z8 tabla-cuotas"
+    *ngIf="this.cuotas.length"
   >
     <ng-container matColumnDef="numero-cuota">
-      <th mat-header-cell *matHeaderCellDef>Nro. Cuota</th>
+      <th mat-header-cell *matHeaderCellDef><b>Nro. Cuota</b></th>
       <td mat-cell *matCellDef="let element">{{ element.numeroCuota }}</td>
       <td mat-footer-cell *matFooterCellDef>Total</td>
     </ng-container>
 
     <ng-container matColumnDef="amortizacion">
-      <th mat-header-cell *matHeaderCellDef>Amortizacion</th>
+      <th mat-header-cell *matHeaderCellDef><b>Amortizacion</b></th>
       <td mat-cell *matCellDef="let element">
         {{ element.amortizacion | separadorMiles }}
       </td>
@@ -44,7 +45,7 @@
     </ng-container>
 
     <ng-container matColumnDef="interes">
-      <th mat-header-cell *matHeaderCellDef>Interés</th>
+      <th mat-header-cell *matHeaderCellDef><b>Interés</b></th>
       <td mat-cell *matCellDef="let element">
         {{ element.interes | separadorMiles }}
       </td>
@@ -52,7 +53,7 @@
     </ng-container>
 
     <ng-container matColumnDef="saldo">
-      <th mat-header-cell *matHeaderCellDef>Saldo</th>
+      <th mat-header-cell *matHeaderCellDef><b>Saldo</b></th>
       <td mat-cell *matCellDef="let element">
         {{ element.saldo | separadorMiles }}
       </td>
@@ -60,7 +61,7 @@
     </ng-container>
 
     <ng-container matColumnDef="cuota">
-      <th mat-header-cell *matHeaderCellDef>Cuota</th>
+      <th mat-header-cell *matHeaderCellDef><b>Cuota</b></th>
       <td mat-cell *matCellDef="let element">
         {{ element.cuota | separadorMiles }}
       </td>
