@@ -74,11 +74,12 @@ export class AppComponent implements OnInit {
 
       // Amortizacion de la cuota
       cuota.amortizacion = this.cuotaMensual - cuota.interes;
-      
+
       cuota.cuota = this.cuotaMensual;
 
       if (cuotaIndex === this.plazo) {
         cuota.amortizacion = this.saldo;
+        cuota.cuota = cuota.amortizacion + cuota.interes;
       }
 
       // Saldo de la cuota
