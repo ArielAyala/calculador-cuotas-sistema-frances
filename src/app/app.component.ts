@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 // import { MatTableDataSource } from '@angular/material/table';
 
 export interface cuota {
@@ -17,10 +23,10 @@ export interface cuota {
 export class AppComponent implements OnInit {
   dataSource: cuota[] = [];
 
-  capital: number = 2349410;
-  plazo: number = 6;
+  capital: string = '';
+  plazo: number = 0;
 
-  tazaInteres: number = 9;
+  tazaInteres: number = 0;
   interesMensual: number = 0;
   cuotaMensual: number = 0;
   cuotas: cuota[] = [];
@@ -46,28 +52,22 @@ export class AppComponent implements OnInit {
   calcular() {
     this.cerearVariables();
 
-    // this.capital = 2665000;
-    // this.plazo = 10;
-    // this.tazaInteres = 12;
+    this.tazaInteres = this.verificarDecimal(this.tazaInteres);
 
-    let cuota: cuota = { saldo: this.capital };
     this.interesMensual = this.tazaInteres / 12;
 
     this.cuotaMensual =
-      ((this.interesMensual / 100) * this.capital) /
+      ((this.interesMensual / 100) * this.parsearAEntero(this.capital)) /
       (1 - Math.pow(1 / (1 + this.interesMensual / 100), this.plazo));
 
     this.cuotaMensual = Math.round(this.cuotaMensual); // Redondeo
 
-    this.saldo = this.capital;
+    this.saldo = this.parsearAEntero(this.capital);
     for (let cuotaIndex = 1; cuotaIndex <= this.plazo; cuotaIndex++) {
       let cuota: cuota = {
         numeroCuota: cuotaIndex,
         saldo: this.saldo,
       };
-      if (cuotaIndex === 6) {
-        console.log(cuota);
-      }
 
       // Interes de la cuota
       cuota.interes = Math.round((cuota.saldo / 100) * this.interesMensual);
@@ -77,7 +77,7 @@ export class AppComponent implements OnInit {
 
       cuota.cuota = this.cuotaMensual;
 
-      if (cuotaIndex === this.plazo) {
+      if (cuotaIndex == this.plazo) {
         cuota.amortizacion = this.saldo;
         cuota.cuota = cuota.amortizacion + cuota.interes;
       }
@@ -105,5 +105,19 @@ export class AppComponent implements OnInit {
     this.totalAmortizacion = 0;
     this.totalInteres = 0;
     this.totalCuotas = 0;
+  }
+
+  verificarDecimal(num: any) {
+    return parseFloat(num.toString().replaceAll(',', '.'));
+  }
+
+  parseSeparadorMiles(valor: any) {
+    valor = valor.toString().replaceAll('.', '');
+
+    this.capital = Number(valor).toLocaleString('es-AR');
+  }
+
+  parsearAEntero(numString: any) {
+    return parseInt(numString.replaceAll('.', ''));
   }
 }

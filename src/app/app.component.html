@@ -6,11 +6,11 @@
   <form class="example-form">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Monto</mat-label>
-      <input name="capital" matInput mask="separator.2" thousandSeparator="." [(ngModel)]="capital" />
+      <input name="capital" matInput [(ngModel)]="capital" (ngModelChange)="parseSeparadorMiles($event)" />
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Cuota</mat-label>
+      <mat-label>Cuotas</mat-label>
       <input name="plazo" matInput maxlength="5" [(ngModel)]="plazo" />
     </mat-form-field>
 
