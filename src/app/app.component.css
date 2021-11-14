@@ -3,8 +3,19 @@ body {
   height: 100%;
 }
 
+.container-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .centrado-texto {
   text-align: center;
+  margin-top: 30px;
+}
+
+.field-capital {
+  max-width: 250px;
 }
 
 form {

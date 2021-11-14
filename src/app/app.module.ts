@@ -9,6 +9,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { SeparadorMilesPipe } from './pipes/separador-miles.pipe';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 @NgModule({
   declarations: [AppComponent, SeparadorMilesPipe],
@@ -18,8 +22,11 @@ import { SeparadorMilesPipe } from './pipes/separador-miles.pipe';
     BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
+    MatSnackBarModule,
     MatTableModule,
     MatInputModule,
+    MatToolbarModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

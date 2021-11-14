@@ -5,7 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-// import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface cuota {
   numeroCuota?: number;
@@ -43,10 +43,18 @@ export class AppComponent implements OnInit {
     'cuota',
   ];
 
-  constructor() {}
+  constructor(private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     // this.calcular();
+  }
+
+  procesar() {
+    if (this.validaciones()) {
+      return;
+    } else {
+      this.calcular();
+    }
   }
 
   calcular() {
@@ -112,12 +120,45 @@ export class AppComponent implements OnInit {
   }
 
   parseSeparadorMiles(valor: any) {
-    valor = valor.toString().replaceAll('.', '');
+    // if (Number(valor).toString() == 'NaN') {
+    //   console.log('El valor ingresado no es un número.');
+    //   this.capital = '';
+    // }
 
+    valor = valor.toString().replaceAll('.', '');
     this.capital = Number(valor).toLocaleString('es-AR');
   }
 
   parsearAEntero(numString: any) {
     return parseInt(numString.replaceAll('.', ''));
+  }
+
+  validaciones() {
+    const capital = this.parsearAEntero(this.capital);
+    var regExp = /[a-zA-Z]/g;
+    var testString = capital.toString();
+
+    if (regExp.test(testString)) {
+      this.openSnackBar('Monto no válido !');
+      return true;
+    }
+
+    if (this.plazo == 0) {
+      this.openSnackBar('Plazo no válido !');
+      return true;
+    }
+
+    if (this.tazaInteres <= 0) {
+      this.openSnackBar('Tasa no válida !');
+      return true;
+    }
+
+    return false;
+  }
+
+  openSnackBar(mensaje: string) {
+    this._snackBar.open(mensaje, '', {
+      duration: 2000,
+    });
   }
 }
