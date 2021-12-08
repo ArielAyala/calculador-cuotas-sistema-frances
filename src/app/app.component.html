@@ -1,27 +1,30 @@
 <style></style>
-<mat-toolbar>
+<mat-toolbar class="toolbar">
   <div class="container-center">
     <span>Calculadora de cuotas - Sistema francés</span>
   </div>
 </mat-toolbar>
 <div class="content" role="main">
-  <h2 class="centrado-texto">Ingrese el monto, plazo (cuotas) y la tasa</h2>
+  <h3 class="centrado-texto">Ingrese el monto, plazo (cuotas) y la tasa</h3>
 
   <form class="example-form">
     <!-- <mat-grid-list cols="2" rowHeight="3:1"> -->
-      <!-- <mat-grid-tile> -->
-        <div class="container-center">
-          <mat-form-field class="example-full-width field-capital" appearance="fill">
-            <mat-label>Monto</mat-label>
-            <input
-              name="capital"
-              matInput
-              [(ngModel)]="capital"
-              (ngModelChange)="parseSeparadorMiles($event)"
-            />
-          </mat-form-field>
-        </div>
-      <!-- </mat-grid-tile> -->
+    <!-- <mat-grid-tile> -->
+    <div class="container-center">
+      <mat-form-field
+        class="example-full-width field-capital"
+        appearance="fill"
+      >
+        <mat-label>Monto</mat-label>
+        <input
+          name="capital"
+          matInput
+          [(ngModel)]="capital"
+          (ngModelChange)="parseSeparadorMiles($event)"
+        />
+      </mat-form-field>
+    </div>
+    <!-- </mat-grid-tile> -->
     <!-- </mat-grid-list> -->
 
     <mat-grid-list cols="5" rowHeight="1:1">
@@ -101,9 +104,19 @@
     <tr mat-footer-row *matFooterRowDef="columnasTabla"></tr>
   </table>
 
-  <br>
-  <br>
-  <br>
+  <br />
+  <br />
+  <br />
+</div>
+
+<div class="footer">
+  <mat-toolbar>
+    <div class="container-center">
+      <a href="https://github.com/ArielAyala/calculador-cuotas-sistema-frances" target="_blank">
+        <img src="assets/logo-github.svg" alt="logo github" class="logo-github">
+      </a>
+    </div>
+  </mat-toolbar>
 </div>
 
 <router-outlet></router-outlet>
