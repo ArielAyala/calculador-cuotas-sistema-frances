@@ -1,7 +1,7 @@
 <style></style>
 <mat-toolbar class="toolbar">
   <div class="container-center">
-    <span>Calculadora de cuotas - Sistema francés</span>
+    <span class="titulo-toolbar">Calculadora de cuotas - Sistema francés</span>
   </div>
 </mat-toolbar>
 <div class="content" role="main">
@@ -48,61 +48,62 @@
       <button mat-raised-button (click)="procesar()">Generar</button>
     </div>
   </form>
-
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    class="mat-elevation-z8 tabla-cuotas"
-    *ngIf="this.cuotas.length"
-  >
-    <ng-container matColumnDef="numero-cuota">
-      <th mat-header-cell *matHeaderCellDef><b>Nro. Cuota</b></th>
-      <td mat-cell *matCellDef="let element">{{ element.numeroCuota }}</td>
-      <td mat-footer-cell *matFooterCellDef>Total</td>
-    </ng-container>
-
-    <ng-container matColumnDef="amortizacion">
-      <th mat-header-cell *matHeaderCellDef><b>Amortizacion</b></th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.amortizacion | separadorMiles }}
-      </td>
-      <td mat-footer-cell *matFooterCellDef>
-        {{ totalAmortizacion | separadorMiles }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="interes">
-      <th mat-header-cell *matHeaderCellDef><b>Interés</b></th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.interes | separadorMiles }}
-      </td>
-      <td mat-footer-cell *matFooterCellDef>
-        {{ totalInteres | separadorMiles }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="saldo">
-      <th mat-header-cell *matHeaderCellDef><b>Saldo</b></th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.saldo | separadorMiles }}
-      </td>
-      <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
-
-    <ng-container matColumnDef="cuota">
-      <th mat-header-cell *matHeaderCellDef><b>Cuota</b></th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.cuota | separadorMiles }}
-      </td>
-      <td mat-footer-cell *matFooterCellDef>
-        {{ totalCuotas | separadorMiles }}
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnasTabla"></tr>
-    <tr mat-footer-row *matFooterRowDef="columnasTabla"></tr>
-  </table>
+  <div class="responsive">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 tabla-cuotas"
+      *ngIf="this.cuotas.length"
+    >
+      <ng-container matColumnDef="numero-cuota">
+        <th mat-header-cell *matHeaderCellDef><b>Nro. Cuota</b></th>
+        <td mat-cell *matCellDef="let element">{{ element.numeroCuota }}</td>
+        <td mat-footer-cell *matFooterCellDef>Total</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="amortizacion">
+        <th mat-header-cell *matHeaderCellDef><b>Amortizacion</b></th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.amortizacion | separadorMiles }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef>
+          {{ totalAmortizacion | separadorMiles }}
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="interes">
+        <th mat-header-cell *matHeaderCellDef><b>Interés</b></th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.interes | separadorMiles }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef>
+          {{ totalInteres | separadorMiles }}
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="saldo">
+        <th mat-header-cell *matHeaderCellDef><b>Saldo</b></th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.saldo | separadorMiles }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+  
+      <ng-container matColumnDef="cuota">
+        <th mat-header-cell *matHeaderCellDef><b>Cuota</b></th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cuota | separadorMiles }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef>
+          {{ totalCuotas | separadorMiles }}
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasTabla"></tr>
+      <tr mat-footer-row *matFooterRowDef="columnasTabla"></tr>
+    </table>
+  </div>
 
   <br />
   <br />
